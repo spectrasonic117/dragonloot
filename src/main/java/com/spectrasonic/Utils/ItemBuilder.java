@@ -1,6 +1,5 @@
 package com.spectrasonic.Utils;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -28,13 +27,13 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setName(String name) {
-        meta.displayName(MiniMessage.miniMessage().deserialize(name));
+        meta.setDisplayName(MessageUtils.formatMessage(name));
         return this;
     }
 
     public ItemBuilder setLore(String... loreLines) {
-        meta.lore(java.util.Arrays.stream(loreLines)
-                .map(MiniMessage.miniMessage()::deserialize)
+        meta.setLore(java.util.Arrays.stream(loreLines)
+                .map(MessageUtils::formatMessage)
                 .toList());
         return this;
     }

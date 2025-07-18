@@ -2,7 +2,7 @@ package com.spectrasonic.dragonloot;
 
 import com.spectrasonic.Utils.CommandUtils;
 import com.spectrasonic.Utils.MessageUtils;
-
+import com.spectrasonic.dragonloot.managers.EventManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
@@ -10,8 +10,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        registerCommands();
-        registerEvents();
+        new EventManager(this);
         CommandUtils.setPlugin(this);
         MessageUtils.sendStartupMessage(this);
 
@@ -20,13 +19,5 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         MessageUtils.sendShutdownMessage(this);
-    }
-
-    public void registerCommands() {
-        // Set Commands Here
-    }
-
-    public void registerEvents() {
-        // Set Events Here
     }
 }
