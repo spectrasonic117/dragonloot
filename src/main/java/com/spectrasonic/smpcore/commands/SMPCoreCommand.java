@@ -2,20 +2,19 @@ package com.spectrasonic.smpcore.commands;
 
 import com.spectrasonic.smpcore.Main;
 import com.spectrasonic.smpcore.managers.ConfigManager;
+import com.spectrasonic.smpcore.managers.MessagesManager;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
-import com.spectrasonic.Utils.MessageUtils;
 import org.bukkit.command.CommandSender;
 
 @CommandAlias("smpcore")
-@SuppressWarnings("unused")
 public class SMPCoreCommand extends BaseCommand {
 
-    private final Main plugin;
+    private final MessagesManager messagesManager;
     private final ConfigManager configManager;
 
-    public SMPCoreCommand(Main plugin, ConfigManager configManager) {
-        this.plugin = plugin;
+    public SMPCoreCommand(Main plugin, ConfigManager configManager, MessagesManager messagesManager) {
+        this.messagesManager = messagesManager;
         this.configManager = configManager;
     }
 
@@ -23,13 +22,13 @@ public class SMPCoreCommand extends BaseCommand {
     @CommandPermission("smpcore.command")
     @Description("SMPCore plugin commands")
     public void onDefault(CommandSender sender) {
-        MessageUtils.sendMessage(sender, "&#FFD700=== SMPCore Commands ===");
-        MessageUtils.sendMessage(sender, "&#00FFFF/smpcore reload &8- Reload plugin configuration");
-        MessageUtils.sendMessage(sender, "&#00FFFF/smpcore <mechanic> <true|false> &8- Enable/disable mechanics");
-        MessageUtils.sendMessage(sender, "&#FFD700Available mechanics:");
-        MessageUtils.sendMessage(sender, "&#00FFFF  enderdragon &8- Ender Dragon death mechanic");
-        MessageUtils.sendMessage(sender, "&#00FFFF  enderman &8- Enderman spawn mechanic");
-        MessageUtils.sendMessage(sender, "&#00FFFF  shulker &8- Shulker death mechanic");
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_HEADER);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_RELOAD);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_MECHANIC_TOGGLE);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_MECHANICS_HEADER);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_ENDERDRAGON);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_ENDERMAN);
+        messagesManager.sendMessage(sender, MessagesManager.COMMAND_LIST_SHULKER);
     }
 
     @Subcommand("reload")
@@ -37,7 +36,8 @@ public class SMPCoreCommand extends BaseCommand {
     @Description("Reload plugin configuration")
     public void onReload(CommandSender sender) {
         configManager.reloadConfig();
-        MessageUtils.sendMessage(sender, "&#00FF00SMPCore configuration reloaded successfully!");
+        messagesManager.reloadMessages();
+        messagesManager.sendMessage(sender, MessagesManager.RELOADED);
     }
 
     @Subcommand("enderdragon")
@@ -46,7 +46,8 @@ public class SMPCoreCommand extends BaseCommand {
     public void onEnderDragonToggle(CommandSender sender, boolean enabled) {
         configManager.setEnderDragonDeathEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
-        MessageUtils.sendMessage(sender, "&#00FFFFEnder Dragon death mechanic is now " + status + "!");
+        messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Ender Dragon death",
+                "%status%", status);
     }
 
     @Subcommand("enderman")
@@ -55,7 +56,8 @@ public class SMPCoreCommand extends BaseCommand {
     public void onEndermanToggle(CommandSender sender, boolean enabled) {
         configManager.setEndermanSpawnEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
-        MessageUtils.sendMessage(sender, "&#00FFFFEnderman spawn mechanic is now " + status + "!");
+        messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Enderman spawn", "%status%",
+                status);
     }
 
     @Subcommand("shulker")
@@ -64,11 +66,12 @@ public class SMPCoreCommand extends BaseCommand {
     public void onShulkerToggle(CommandSender sender, boolean enabled) {
         configManager.setShulkerDeathEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
-        MessageUtils.sendMessage(sender, "&#00FFFFShulker death mechanic is now " + status + "!");
+        messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Shulker death", "%status%",
+                status);
     }
 
     @CommandPermission("smpcore.command")
     public void onNoPermission(CommandSender sender) {
-        MessageUtils.sendPermissionMessage(sender);
+        messagesManager.sendMessage(sender, MessagesManager.NO_PERMISSION);
     }
 }

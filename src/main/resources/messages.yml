@@ -1,0 +1,18 @@
+# SMPCore Messages Configuration
+
+messages:
+  # Reload messages
+  reloaded: "&aSMPCore configuration reloaded successfully!"
+  no-permission: "&cYou do not have permission to use this command!"
+
+  # Command list messages
+  command-list-header: "&#FFD700=== SMPCore Commands ==="
+  command-list-reload: "&#00FFFF/smpcore reload &8- Reload plugin configuration"
+  command-list-mechanic-toggle: "&#00FFFF/smpcore <mechanic> <true|false> &8- Enable/disable mechanics"
+  command-list-mechanics-header: "&#FFD700Available mechanics:"
+  command-list-enderdragon: "&#00FFFF  enderdragon &8- Ender Dragon death mechanic"
+  command-list-enderman: "&#00FFFF  enderman &8- Enderman spawn mechanic"
+  command-list-shulker: "&#00FFFF  shulker &8- Shulker death mechanic"
+
+  # Mechanic toggle messages
+  mechanic-toggled: "&#00FFFF%type% mechanic is now %status%!"

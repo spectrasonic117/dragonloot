@@ -5,6 +5,7 @@ import com.spectrasonic.Utils.MessageUtils;
 import com.spectrasonic.smpcore.managers.CommandManager;
 import com.spectrasonic.smpcore.managers.ConfigManager;
 import com.spectrasonic.smpcore.managers.EventManager;
+import com.spectrasonic.smpcore.managers.MessagesManager;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,7 +17,9 @@ public final class Main extends JavaPlugin {
 
         // Initialize managers
         ConfigManager configManager = new ConfigManager(this);
-        new CommandManager(this, configManager);
+        MessagesManager messagesManager = new MessagesManager(this);
+        messagesManager.loadMessages();
+        new CommandManager(this, configManager, messagesManager);
 
         new EventManager(this, configManager);
         CommandUtils.setPlugin(this);

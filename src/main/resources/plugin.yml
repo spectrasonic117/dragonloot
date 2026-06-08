@@ -1,4 +1,5 @@
 name: SMPCore
+api: "1.21"
 version: "${version}"
 main: com.spectrasonic.smpcore.Main
 api-version: "1.21"
