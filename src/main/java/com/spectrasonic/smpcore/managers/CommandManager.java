@@ -20,6 +20,7 @@ public class CommandManager {
     }
 
     private void registerCommands(ConfigManager configManager, MessagesManager messagesManager) {
-        acfManager.registerCommand(new SMPCoreCommand(plugin, configManager, messagesManager));
+        acfManager.getCommandCompletions().registerCompletion("bools", c -> java.util.List.of("true", "false"));
+        acfManager.registerCommand(new SMPCoreCommand(configManager, messagesManager));
     }
 }

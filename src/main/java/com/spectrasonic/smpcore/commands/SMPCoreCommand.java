@@ -1,6 +1,5 @@
 package com.spectrasonic.smpcore.commands;
 
-import com.spectrasonic.smpcore.Main;
 import com.spectrasonic.smpcore.managers.ConfigManager;
 import com.spectrasonic.smpcore.managers.MessagesManager;
 import co.aikar.commands.BaseCommand;
@@ -13,7 +12,7 @@ public class SMPCoreCommand extends BaseCommand {
     private final MessagesManager messagesManager;
     private final ConfigManager configManager;
 
-    public SMPCoreCommand(Main plugin, ConfigManager configManager, MessagesManager messagesManager) {
+    public SMPCoreCommand(ConfigManager configManager, MessagesManager messagesManager) {
         this.messagesManager = messagesManager;
         this.configManager = configManager;
     }
@@ -43,7 +42,8 @@ public class SMPCoreCommand extends BaseCommand {
     @Subcommand("enderdragon")
     @CommandPermission("smpcore.command.enderdragon")
     @Description("Toggle Ender Dragon death mechanic")
-    public void onEnderDragonToggle(CommandSender sender, boolean enabled) {
+    @CommandCompletion("@bools")
+    public void onEnderDragonToggle(CommandSender sender, @Values("true|false") boolean enabled) {
         configManager.setEnderDragonDeathEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
         messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Ender Dragon death",
@@ -53,7 +53,8 @@ public class SMPCoreCommand extends BaseCommand {
     @Subcommand("enderman")
     @CommandPermission("smpcore.command.enderman")
     @Description("Toggle Enderman spawn mechanic")
-    public void onEndermanToggle(CommandSender sender, boolean enabled) {
+    @CommandCompletion("@bools")
+    public void onEndermanToggle(CommandSender sender, @Values("true|false") boolean enabled) {
         configManager.setEndermanSpawnEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
         messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Enderman spawn", "%status%",
@@ -63,7 +64,8 @@ public class SMPCoreCommand extends BaseCommand {
     @Subcommand("shulker")
     @CommandPermission("smpcore.command.shulker")
     @Description("Toggle Shulker death mechanic")
-    public void onShulkerToggle(CommandSender sender, boolean enabled) {
+    @CommandCompletion("@bools")
+    public void onShulkerToggle(CommandSender sender, @Values("true|false") boolean enabled) {
         configManager.setShulkerDeathEnabled(enabled);
         String status = enabled ? "&#00FF00enabled" : "&#FF0000disabled";
         messagesManager.sendMessage(sender, MessagesManager.MECHANIC_TOGGLED, "%type%", "Shulker death", "%status%",
