@@ -1,5 +1,6 @@
 package com.spectrasonic.smpcore.listeners;
 
+import com.spectrasonic.smpcore.managers.ConfigManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
@@ -22,13 +23,20 @@ public class EndermanSpawnListener implements Listener {
             Material.PURPUR_STAIRS);
 
     private final Random random = new Random();
+    private final ConfigManager configManager;
+
+    public EndermanSpawnListener(ConfigManager configManager) {
+        this.configManager = configManager;
+    }
 
     @EventHandler
     public void onEndermanSpawn(CreatureSpawnEvent event) {
         // Verificar si es un spawn natural de enderman
         if (event.getEntityType() != EntityType.ENDERMAN ||
                 (event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.NATURAL &&
-                        event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER_EGG)) {
+                        event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER_EGG)
+                ||
+                !configManager.isEndermanSpawnEnabled()) {
             return;
         }
 

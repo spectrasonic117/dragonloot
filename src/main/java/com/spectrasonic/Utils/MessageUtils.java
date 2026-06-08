@@ -14,7 +14,7 @@ public final class MessageUtils {
 
     private static final JavaPlugin plugin = JavaPlugin.getProvidingPlugin(MessageUtils.class);
     public static final String DIVIDER = "&7----------------------------------------";
-    public static final String PREFIX = "&7[&6" + plugin.getPluginMeta().getName() + "&7] &6»";
+    public static final String PREFIX = "&7[&a" + plugin.getPluginMeta().getName() + "&7] &a» &r";
 
     private static final Pattern HEX_COLOR_PATTERN = Pattern.compile("&#([0-9a-fA-F]{6})");
 

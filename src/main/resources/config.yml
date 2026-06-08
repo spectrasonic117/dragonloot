@@ -1,0 +1,10 @@
+# SMPCore Configuration
+# Set to false to disable specific mechanics
+
+mechanics:
+  ender-dragon-death:
+    enabled: true
+  enderman-spawn:
+    enabled: true
+  shulker-death:
+    enabled: true

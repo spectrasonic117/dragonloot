@@ -3,3 +3,19 @@ version: "${version}"
 main: com.spectrasonic.smpcore.Main
 api-version: "1.21"
 authors: [Spectrasonic]
+permissions:
+  smpcore.command:
+    description: Allows use of the smpcore command
+    default: op
+  smpcore.command.reload:
+    description: Allows reloading of the SMPCore configuration
+    default: op
+  smpcore.command.enderdragon:
+    description: Allows toggling the Ender Dragon death mechanic
+    default: op
+  smpcore.command.enderman:
+    description: Allows toggling the Enderman spawn mechanic
+    default: op
+  smpcore.command.shulker:
+    description: Allows toggling the Shulker death mechanic
+    default: op

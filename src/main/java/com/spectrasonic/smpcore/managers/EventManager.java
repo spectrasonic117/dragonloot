@@ -8,9 +8,9 @@ import com.spectrasonic.smpcore.listeners.ShulkerDeathListener;
 
 public class EventManager {
 
-    public EventManager(JavaPlugin plugin) {
-        plugin.getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new ShulkerDeathListener(), plugin);
-        plugin.getServer().getPluginManager().registerEvents(new EndermanSpawnListener(), plugin);
+    public EventManager(JavaPlugin plugin, ConfigManager configManager) {
+        plugin.getServer().getPluginManager().registerEvents(new EnderDragonDeathListener(configManager), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new ShulkerDeathListener(configManager), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new EndermanSpawnListener(configManager), plugin);
     }
 }
