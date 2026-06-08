@@ -83,9 +83,7 @@ public final class MessageUtils {
     }
 
     public static void sendBroadcastMessage(String message) {
-        Bukkit.getOnlinePlayers().forEach(player ->
-                player.sendMessage(formatMessage(message))
-        );
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(formatMessage(message)));
     }
 
     public static void sendShutdownMessage(JavaPlugin plugin) {
@@ -102,7 +100,8 @@ public final class MessageUtils {
 
     public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         // Note: Bukkit's Player.sendTitle method handles color codes directly.
-        // We need to convert MiniMessage format to ChatColor format for title and subtitle.
+        // We need to convert MiniMessage format to ChatColor format for title and
+        // subtitle.
         player.sendTitle(formatMessage(title), formatMessage(subtitle), fadeIn * 20, stay * 20, fadeOut * 20);
     }
 
@@ -111,22 +110,11 @@ public final class MessageUtils {
     }
 
     public static void broadcastTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-        Bukkit.getOnlinePlayers().forEach(player ->
-                player.sendTitle(formatMessage(title), formatMessage(subtitle), fadeIn * 20, stay * 20, fadeOut * 20));
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(formatMessage(title), formatMessage(subtitle),
+                fadeIn * 20, stay * 20, fadeOut * 20));
     }
-
-    // Uso - Send Title to players
-    // MiniMessageUtils.sendTitle(player, 
-    //     "&6¡Alerta!", 
-    //     "&cMensaje importante", 
-    //     2, 40, 2
-    // );
 
     public static void broadcastActionBar(String message) {
-        Bukkit.getOnlinePlayers().forEach(player ->
-                player.sendActionBar(formatMessage(message)));
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendActionBar(formatMessage(message)));
     }
-
-    // Uso Broadcast ActionBAR
-    // MiniMessageUtils.broadcastActionBar("&e¡Evento e…special activado!");
 }

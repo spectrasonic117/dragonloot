@@ -1,4 +1,4 @@
-package com.spectrasonic.dragonloot.listeners;
+package com.spectrasonic.smpcore.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -17,9 +17,11 @@ public class DragonLootListener implements Listener {
             // Dar la experiencia del dragón (12500 XP)
 
             // Dropear la Elytra
-            event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), new ItemStack(Material.ELYTRA));
+            event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(),
+                    new ItemStack(Material.ELYTRA));
 
-            // Evitar el drop predeterminado (la perla del dragón y el resto de lo que daría el dragón)
+            // Evitar el drop predeterminado (la perla del dragón y el resto de lo que daría
+            // el dragón)
             event.getDrops().clear();
         }
     }

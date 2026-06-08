@@ -1,4 +1,4 @@
-package com.spectrasonic.dragonloot.listeners;
+package com.spectrasonic.smpcore.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Enderman;
@@ -17,27 +17,27 @@ public class EndermanSpawnListener implements Listener {
 
     private static final double SPAWN_CHANCE = 0.75;
     private static final List<Material> VALID_BLOCKS = Arrays.asList(
-        Material.PURPUR_BLOCK,
-        Material.PURPUR_PILLAR,
-        Material.PURPUR_STAIRS
-    );
-    
+            Material.PURPUR_BLOCK,
+            Material.PURPUR_PILLAR,
+            Material.PURPUR_STAIRS);
+
     private final Random random = new Random();
 
     @EventHandler
     public void onEndermanSpawn(CreatureSpawnEvent event) {
         // Verificar si es un spawn natural de enderman
-        if (event.getEntityType() != EntityType.ENDERMAN || 
-            event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.NATURAL) {
+        if (event.getEntityType() != EntityType.ENDERMAN ||
+                (event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.NATURAL &&
+                        event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER_EGG)) {
             return;
         }
 
         Enderman enderman = (Enderman) event.getEntity();
         Location location = enderman.getLocation();
-        
+
         // Verificar si está parado en un bloque válido
         Material blockBelow = location.getBlock().getRelative(0, -1, 0).getType();
-        
+
         if (!VALID_BLOCKS.contains(blockBelow)) {
             return;
         }
@@ -45,13 +45,12 @@ public class EndermanSpawnListener implements Listener {
         // 75% de probabilidad de reemplazar por shulker
         if (random.nextDouble() <= SPAWN_CHANCE) {
             event.setCancelled(true);
-            
+
             // Spawnear shulker en la misma ubicación
             Shulker shulker = (Shulker) location.getWorld().spawnEntity(
-                location, 
-                EntityType.SHULKER
-            );
-            
+                    location,
+                    EntityType.SHULKER);
+
             // Copiar algunas propiedades del enderman original
             shulker.setPersistent(enderman.isPersistent());
         }

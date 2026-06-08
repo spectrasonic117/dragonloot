@@ -1,5 +1,5 @@
-name: dragonloot
-version: '${version}'
-main: com.spectrasonic.dragonloot.Main
-api-version: '1.21'
+name: SMPCore
+version: "${version}"
+main: com.spectrasonic.smpcore.Main
+api-version: "1.21"
 authors: [Spectrasonic]

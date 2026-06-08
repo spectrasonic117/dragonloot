@@ -1,8 +1,9 @@
-package com.spectrasonic.dragonloot;
+package com.spectrasonic.smpcore;
 
 import com.spectrasonic.Utils.CommandUtils;
 import com.spectrasonic.Utils.MessageUtils;
-import com.spectrasonic.dragonloot.managers.EventManager;
+import com.spectrasonic.smpcore.managers.EventManager;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {

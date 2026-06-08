@@ -1,8 +1,9 @@
-package com.spectrasonic.dragonloot.managers;
+package com.spectrasonic.smpcore.managers;
 
-import com.spectrasonic.dragonloot.listeners.DragonLootListener;
-import com.spectrasonic.dragonloot.listeners.EndermanSpawnListener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.spectrasonic.smpcore.listeners.DragonLootListener;
+import com.spectrasonic.smpcore.listeners.EndermanSpawnListener;
 
 public class EventManager {
 

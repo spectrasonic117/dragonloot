@@ -4,7 +4,7 @@
         <modelVersion>4.0.0</modelVersion>
 
         <groupId>com.spectrasonic</groupId>
-        <artifactId>dragonloot</artifactId>
+        <artifactId>smpcore</artifactId>
         <version>1.0.0</version>
         <packaging>jar</packaging>
 
@@ -15,7 +15,7 @@
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
             <!-- Dependencies version -->
-            <paper.version>1.21.1-R0.1-SNAPSHOT</paper.version>
+            <paper.version>1.21.8-R0.1-SNAPSHOT</paper.version>
             <acf.version>0.5.1-SNAPSHOT</acf.version>
             <lombok.version>1.18.38</lombok.version>
             <adventure.version>4.23.0</adventure.version>
