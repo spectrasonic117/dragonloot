@@ -39,6 +39,11 @@
                 <id>aikar</id>
                 <url>https://repo.aikar.co/content/groups/aikar/</url>
             </repository>
+
+            <repository>
+                <id>aikar</id>
+                <url>https://repo.aikar.co/content/groups/aikar/</url>
+            </repository>
         </repositories>
 
         <dependencies>
@@ -49,6 +54,12 @@
                 <version>${paper.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+        <groupId>co.aikar</groupId>
+        <artifactId>acf-Paper</artifactId> 
+        <version>0.5.1-SNAPSHOT</version> 
+    </dependency>
         </dependencies>
 
         <build>
@@ -83,6 +94,41 @@
                         <nonFilteredFileExtensions>
                             <nonFilteredFileExtension>jar</nonFilteredFileExtension>
                         </nonFilteredFileExtensions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <configuration>
+                        <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+                        <relocations>
+                            <relocation>
+                                <pattern>co.aikar.commands</pattern>
+                                <shadedPattern>${project.groupId}.commands</shadedPattern> <!-- Replace this -->
+                            </relocation>
+                            <relocation>
+                                <pattern>co.aikar.locales</pattern>
+                                <shadedPattern>${project.groupId}.locales</shadedPattern> <!-- Replace this -->
+                            </relocation>
+                        </relocations>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- JAR Plugin para especificar directorio de salida -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                    <configuration>
+                        <outputDirectory>${basedir}/out</outputDirectory>
                     </configuration>
                 </plugin>
             </plugins>

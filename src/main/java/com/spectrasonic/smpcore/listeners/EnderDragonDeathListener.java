@@ -5,10 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.entity.EnderDragon;
-import org.bukkit.entity.Shulker;
 import org.bukkit.inventory.ItemStack;
 
-public class DragonLootListener implements Listener {
+public class EnderDragonDeathListener implements Listener {
 
     // Este evento se ejecuta cuando un dragón de End muere
     @EventHandler
@@ -23,16 +22,6 @@ public class DragonLootListener implements Listener {
             // Evitar el drop predeterminado (la perla del dragón y el resto de lo que daría
             // el dragón)
             event.getDrops().clear();
-        }
-    }
-
-    // Este evento se ejecuta cuando un shulker muere
-    @EventHandler
-    public void onShulkerDeath(EntityDeathEvent event) {
-        if (event.getEntity() instanceof Shulker) {
-            // Asegurarse de que se dropeen dos Shulker Shells
-            event.getDrops().removeIf(item -> item.getType() == Material.SHULKER_SHELL);
-            event.getDrops().add(new ItemStack(Material.SHULKER_SHELL, 2)); // Dropear dos en lugar de uno
         }
     }
 }
